@@ -11,7 +11,7 @@ const checkFilter = (cometEvent) => {
     let eventEnd = setDateFormat(localComet.fim).getTime();
     let twoMonthValue = twoMonthTimeValue();
     let timeValueLimit = this.localToday.getTime() + twoMonthValue;
-    if(eventEnd <= timeValueLimit && eventStart >= this.todayValue){return localComet;}
+    if(eventEnd < timeValueLimit && eventStart > this.todayValue){return localComet;}
     
 }
 
@@ -33,5 +33,18 @@ const setDateFormat = (stringDate) => { // format that will always arrive is mon
     let dateFormatSet = new Date(dateString);
     return dateFormatSet;
 }
+
+const arrayPrinter = (arrayToBePrinted) => {
+    let arrayComets = arrayToBePrinted;
+    for(let index of arrayComets){
+        let name = index.nome;
+        let intensity = "-" + index.intensidade + " ";
+        let hemisphere =  "-" + index.thz + " ";
+        let period = "-" + index.inicio + "ate" + index.fim; 
+        console.log(name.padEnd(20," ")+ intensidade + hemisphere + period);
+    } 
+}
+
+
 const getEvent = (date) => {};
 export default getEvent;
