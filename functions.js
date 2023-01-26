@@ -1,9 +1,9 @@
-const arrayFiltered = (today, arrayDb) => {
+const arrayFilter = (today, arrayDb) => {
     let localToday = today;
     let todayValue = localToday.getTime();
     let localArrayDb = arrayDb;
-    let todayEventsArray = localArrayDb.filter();
-    let upcomingEventsArray = localArrayDb.filter(checkFilter);
+    let todayEventsArray = localArrayDb.filter(checkFilterForToday);
+    let upcomingEventsArray = localArrayDb.filter(checkFilterForUpcoming);
 }
 
 const checkFilterForUpcoming = (cometEvent) => {
@@ -61,5 +61,5 @@ const arrayPrinter = (arrayToday, arrayUpcoming) => {
 }
 
 
-const getEvent = (date) => {};
-export default getEvent;
+
+export {arrayFilter, arrayPrinter};
