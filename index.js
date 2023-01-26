@@ -1,4 +1,6 @@
 import dB_astroEvents from "./dataBase";
-import getEvent from "./functions";
+import {arrayFilterToday, arrayFilterUpcoming, arrayPrinter} from "./functions";
 
-let date = new Date();
+let todaysEvents = arrayFilterToday(dB_astroEvents);
+let upcomingEvents = arrayFilterUpcoming(dB_astroEvents);
+arrayPrinter(todaysEvents, upcomingEvents);
