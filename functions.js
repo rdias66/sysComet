@@ -1,29 +1,27 @@
 const arrayFiltered = (today, arrayDb) => {
     let localToday = today;
-    let timeValue = localToday.getTimestamp();
+    let todayValue = localToday.getTime();
     let localArrayDb = arrayDb;
-    let filteredArray = localArrayDb.filter()
+    let filteredArray = localArrayDb.filter(checkFilter);
 }
 
 const checkFilter = (cometEvent) => {
-    let eventStart = setDateFormat(cometEvent.inicio);
-    let eventEnd = setDateFormat(cometEvent.fim);
+    let localComet = cometEvent;
+    let eventStart = setDateFormat(localComet.inicio).getTime();
+    let eventEnd = setDateFormat(localComet.fim).getTime();
     let twoMonthValue = twoMonthTimeValue();
-    let timeValueLimit = this.localToday.getTimestamp() + twoMonthValue;
+    let timeValueLimit = this.localToday.getTime() + twoMonthValue;
+    if(eventEnd <= timeValueLimit && eventStart >= this.todayValue){return localComet;}
     
 }
 
-const twoMonthTimeValue = () => { //project rule of business
+const twoMonthTimeValue = () => { //project rule of business / static function, fixed value
     let initialDate = new Date("2023-01-25");//day of choice not important, the dates just have to be exacly 2 months apart
     let finalDate = new Date("2023-03-25");
-    let initialValue = initialDate.getTimestamp();
-    let finalValue  = finalDate.getTimestamp();
+    let initialValue = initialDate.getTime();
+    let finalValue  = finalDate.getTime();
     let twoMonthValue = finalValue - initialValue;
     return twoMonthValue;
-}
-
-const checkTimeValue = () => {
-
 }
 
 const setDateFormat = (stringDate) => { // format that will always arrive is month(two digits)/day
