@@ -2,17 +2,23 @@ const arrayFiltered = (today, arrayDb) => {
     let localToday = today;
     let todayValue = localToday.getTime();
     let localArrayDb = arrayDb;
-    let filteredArray = localArrayDb.filter(checkFilter);
+    let todayEventsArray = localArrayDb.filter();
+    let upcomingEventsArray = localArrayDb.filter(checkFilter);
 }
 
-const checkFilter = (cometEvent) => {
+const checkFilterForUpcoming = (cometEvent) => {
     let localComet = cometEvent;
     let eventStart = setDateFormat(localComet.inicio).getTime();
     let eventEnd = setDateFormat(localComet.fim).getTime();
-    let twoMonthValue = twoMonthTimeValue();
-    let timeValueLimit = this.localToday.getTime() + twoMonthValue;
-    if(eventEnd < timeValueLimit && eventStart > this.todayValue){return localComet;}
-    
+    let twoMonthValue = twoMonthTimeValue(); 
+    let timeValueLimit = this.todayValue + twoMonthValue;
+    if(eventEnd < timeValueLimit && eventStart > todayValue ){return localComet;}    
+}
+
+const checkFilterForToday = (cometEvent) => {
+    let localComet = cometEvent;
+    let eventStart = setDateFormat(localComet.inicio).getTime();    
+    if(eventStart <= todayValue && eventEnd >= todayValue){return localComet}
 }
 
 const twoMonthTimeValue = () => { //project rule of business / static function, fixed value
@@ -34,9 +40,18 @@ const setDateFormat = (stringDate) => { // format that will always arrive is mon
     return dateFormatSet;
 }
 
-const arrayPrinter = (arrayToBePrinted) => {
-    let arrayComets = arrayToBePrinted;
-    for(let index of arrayComets){
+const arrayPrinter = (arrayToday, arrayUpcoming) => {
+    let localArrayToday = arrayToday;
+    let localArrayUpcoming = arrayUpcoming;
+    if(localArrayToday.legth != 0){ // if not empty
+    for(let event of localArrayToday){ //prints todays events
+        let name = event.nome;
+        let intensity = "-" + event.intensidade + " ";
+        let hemisphere =  "-" + event.thz + " ";
+        let period = "-" + event.inicio + "ate" + event.fim;
+        }
+    }else {console.log("Nao existem chuvas para serem visualizadas hoje. seguem as chuvas dos proximos 2 meses.\n");}
+    for(let index of localArrayUpcoming){ //prints next two month's upcoming events
         let name = index.nome;
         let intensity = "-" + index.intensidade + " ";
         let hemisphere =  "-" + index.thz + " ";
