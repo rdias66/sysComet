@@ -1,3 +1,4 @@
+// every let variable should be changed to const
 const arrayFilterToday = (today, arrayDb) => {
     let localToday = today;
     let todayValue = localToday.getTime();
